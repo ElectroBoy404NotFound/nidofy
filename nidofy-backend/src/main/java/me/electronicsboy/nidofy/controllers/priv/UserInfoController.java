@@ -40,7 +40,7 @@ public class UserInfoController {
 	@GetMapping("/getById/{id}")
 	public ResponseEntity<User> getById(@PathVariable long id) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if(((User) authentication.getPrincipal()).getPrivilegeLevel().compareTo(PrivilegeLevel.ADMIN) <= 0)
+		if(((User) authentication.getPrincipal()).getPrivilegeLevel() != PrivilegeLevel.ADMIN)
 			throw new UnprivilagedExpection("You aren't privilaged enough to do this!");
 		
 		if(!userRepository.existsById(id))

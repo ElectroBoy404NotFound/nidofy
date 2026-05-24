@@ -29,7 +29,7 @@ public class UserInfoUpdateController {
 	public ResponseEntity<User> updateUserInfo(@RequestBody UpdateUserInfoDto info) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User doer = (User) authentication.getPrincipal();
-		if(doer.getPrivilegeLevel().compareTo(PrivilegeLevel.ADMIN) <= 0)
+		if(doer.getPrivilegeLevel() != PrivilegeLevel.ADMIN)
 			throw new UnprivilagedExpection("You aren't privilaged enough to do this!");
 		
 		if(info.getPrivilageLevel() != null) {

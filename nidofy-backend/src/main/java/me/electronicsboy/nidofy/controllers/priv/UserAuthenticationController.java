@@ -98,7 +98,7 @@ public class UserAuthenticationController {
             RefreshToken rt = optionalToken.get();
             User user = userRepository.findByUsername(rt.getUsername()).orElseThrow();
             String newAccessToken = jwtService.generateToken(user);
-            return ResponseEntity.ok(new LoginResponse().setToken(newAccessToken).setRefreshToken(null).setExpiresIn(jwtService.getExpirationTime()));
+            return ResponseEntity.ok(new LoginResponse().setToken(newAccessToken).setRefreshToken(rt.getToken()).setExpiresIn(jwtService.getExpirationTime()));
         }
         throw new InvalidRefreshTokenException("Invalid refresh token!");    
     }

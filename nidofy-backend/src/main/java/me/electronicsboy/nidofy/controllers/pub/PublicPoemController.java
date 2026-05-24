@@ -1,0 +1,54 @@
+package me.electronicsboy.nidofy.controllers.pub;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import me.electronicsboy.nidofy.models.Poem;
+import me.electronicsboy.nidofy.repositories.PoemRepository;
+import me.electronicsboy.nidofy.responses.PoemPreviewResponse;
+
+@RequestMapping("/public/poems")
+@RestController
+public class PublicPoemController {
+	private final PoemRepository poemsRepo;
+	
+	public PublicPoemController(PoemRepository poemsRepo) {
+		this.poemsRepo = poemsRepo;
+	}
+	
+	@GetMapping("/getPoemById")
+	public Poem getPoemById(@RequestParam(name="id") long id) {
+		return poemsRepo.findById(id).orElseThrow();
+	}
+	
+	@GetMapping("/getAllPoems")
+	public List<PoemPreviewResponse> getAllPoems() {
+		List<PoemPreviewResponse> response = new ArrayList<>();
+		
+		for(Poem p : poemsRepo.findAll()) {
+			PoemPreviewResponse curr = new PoemPreviewResponse();
+			
+			curr.setId(p.getId());
+			curr.setTitle(p.getTitle());
+			curr.setDate(p.getDate());
+			curr.setSignature(p.getSignature());
+			curr.setCreatedAt(p.getCreatedAt());
+			
+			String line = p.getPoem().get(0).get(0);
+			if(line.length() < 60) {
+				line += ' ';
+				line += p.getPoem().get(0).get(1);
+			}
+			curr.setContent(line.substring(0, 65) + "...");
+			
+			response.add(curr);
+		}
+		
+		return response;
+	}
+}

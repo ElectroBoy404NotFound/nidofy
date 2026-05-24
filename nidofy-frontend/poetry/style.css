@@ -1,0 +1,80 @@
+@font-face {
+    font-family: Phantom Sans;
+    src: url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Regular.woff)format("woff"),url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Regular.woff2)format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap
+}
+
+@font-face {
+    font-family: Phantom Sans;
+    src: url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Italic.woff)format("woff"),url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Italic.woff2)format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap
+}
+
+@font-face {
+    font-family: Phantom Sans;
+    src: url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Bold.woff)format("woff"),url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Bold.woff2)format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap
+}
+
+body {
+    background: #092579ED;
+    background: linear-gradient(90deg, rgba(9, 37, 121, 1) 5%, rgba(9, 9, 121, 1) 10%, rgba(27, 0, 87, 1) 15%, rgba(2, 0, 36, 1) 50%, rgba(27, 0, 87, 1) 90%, rgba(9, 9, 121, 1) 95%, rgba(9, 37, 121, 1) 100%);
+
+    color: aliceblue;
+}
+
+.poetry-card {
+    background: #7c3af8cf;
+    background: linear-gradient(305deg, rgba(124, 58, 248, 1) 32%, rgba(53, 11, 158, 0.98) 100%);
+
+    color: aliceblue;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.poetry-card .card-body {
+    flex-grow: 1;
+}
+
+.sitefooter {
+    backdrop-filter: blur(52px);
+}
+
+.my-poetry h2 {
+    position: relative;
+    top: 500px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    text-decoration: none;
+    color: #666;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    padding: 6px 12px;
+    border-radius: 10px;
+
+    /* top: 50000px; */
+
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: rgba(255,255,255,0.08);
+    color: white;
+
+    transform: translateX(-2px);
+}

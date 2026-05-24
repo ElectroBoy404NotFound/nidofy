@@ -1,0 +1,133 @@
+@font-face {
+    font-family: Phantom Sans;
+    src: url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Regular.woff)format("woff"),url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Regular.woff2)format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap
+}
+
+@font-face {
+    font-family: Phantom Sans;
+    src: url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Italic.woff)format("woff"),url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Italic.woff2)format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap
+}
+
+@font-face {
+    font-family: Phantom Sans;
+    src: url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Bold.woff)format("woff"),url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Bold.woff2)format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap
+}
+
+body {
+    background: #092579ED;
+    background: linear-gradient(90deg, rgba(9, 37, 121, 1) 5%, rgba(9, 9, 121, 1) 10%, rgba(27, 0, 87, 1) 15%, rgba(2, 0, 36, 1) 50%, rgba(27, 0, 87, 1) 90%, rgba(9, 9, 121, 1) 95%, rgba(9, 37, 121, 1) 100%);
+
+    color: aliceblue;
+}
+
+.poetry-card {
+    background: #7c3af8cf;
+    background: linear-gradient(305deg, rgba(124, 58, 248, 1) 32%, rgba(53, 11, 158, 0.98) 100%);
+
+    color: aliceblue;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.swiper-slide {
+    height: auto;
+    display: flex;
+}
+
+.swiper-button-prev {
+    left: -20px;
+    position: absolute;
+}
+
+.swiper-button-next {
+    right: -20px;
+    position: absolute;
+}
+
+.poetry-card .card-body {
+    flex-grow: 1;
+}
+
+.project-info {
+    color: #d9d6f4;
+    font-size: 0.9em;
+    margin-top: 15px;
+}
+
+.project-thumbnail {
+    max-width: 100%;
+    max-height: 150px;
+    position: center;
+}
+
+.meimage {
+    /* border-radius: 50%; */
+    width: 260px; 
+    height: 260px;
+    object-fit: cover;
+    border-radius: 40px;
+}
+
+.sitefooter {
+    backdrop-filter: blur(52px);
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.blur-slide {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(8px);
+    transition: all 0.7s ease;
+}
+
+.blur-slide.show {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    text-decoration: none;
+    color: white;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    padding: 6px 12px;
+    border-radius: 10px;
+
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: rgba(255,255,255,0.08);
+    
+    color: #666;
+
+    transform: translateX(-2px);
+}

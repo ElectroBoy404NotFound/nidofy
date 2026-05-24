@@ -1,0 +1,128 @@
+@font-face {
+    font-family: Phantom Sans;
+    src: url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Regular.woff)format("woff"),url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Regular.woff2)format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap
+}
+
+@font-face {
+    font-family: Phantom Sans;
+    src: url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Italic.woff)format("woff"),url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Italic.woff2)format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap
+}
+
+@font-face {
+    font-family: Phantom Sans;
+    src: url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Bold.woff)format("woff"),url(https://assets.hackclub.com/fonts/Phantom_Sans_0.7/Bold.woff2)format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap
+}
+
+body {
+    background: #092579ED;
+    background: linear-gradient(90deg, rgba(9, 37, 121, 1) 5%, rgba(9, 9, 121, 1) 10%, rgba(27, 0, 87, 1) 15%, rgba(2, 0, 36, 1) 50%, rgba(27, 0, 87, 1) 90%, rgba(9, 9, 121, 1) 95%, rgba(9, 37, 121, 1) 100%);
+
+    color: aliceblue;
+}
+
+.sitefooter {
+    backdrop-filter: blur(52px);
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+.poem {
+    max-width: 700px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 18px;
+
+    background: rgba(10, 15, 40, 0.55);
+    backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+
+    transition: transform 0.3s ease;
+}
+
+.poem:hover {
+    transform: translateY(-4px);
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    text-decoration: none;
+    color: #666;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    padding: 6px 12px;
+    border-radius: 10px;
+
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: rgba(255,255,255,0.08);
+    color: white;
+
+    transform: translateX(-2px);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    transition: 0.2s ease;
+}
+
+/* .card-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 12px;
+    margin-bottom: 20px;
+} */
+
+.card-subtitle {
+    line-height: 1.6;
+}
+
+#project img {
+    max-width: 95%;
+    width: 95%;
+    border-radius: 12px;
+}
+
+#project pre {
+    overflow-x: auto;
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+#project code {
+    font-family: monospace;
+}

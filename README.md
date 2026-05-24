@@ -61,7 +61,9 @@ To run this project, you will need to add the following environment variables to
 
 `SPRING_MAIL_PASSWORD`
 
+### Uploads
 
+`UPLOADS_TARGETDIRECTORY`
 
 ## Demo
 

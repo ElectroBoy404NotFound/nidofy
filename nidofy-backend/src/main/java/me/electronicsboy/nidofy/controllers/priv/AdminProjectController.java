@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,9 @@ import me.electronicsboy.nidofy.repositories.ProjectRepository;
 @RestController
 @RequestMapping("/admin/projects")
 public class AdminProjectController {
+	@Value("${uploads.targetdirectory}")
+    private String uploadDirectory;
+	
 	private final ProjectRepository projectsRepo;
 	
 	public AdminProjectController(ProjectRepository projectsRepo) {
@@ -74,7 +78,7 @@ public class AdminProjectController {
     	
     	String filename = originalFilename + "-" + System.currentTimeMillis() + extension;
     	
-    	Path directoryPath = Path.of(("D:\\uploads\\").replaceAll(" ", "_"));
+    	Path directoryPath = Path.of((uploadDirectory).replaceAll(" ", "_"));
     	Path targetLocation = directoryPath.resolve(filename.replaceAll(" ", "_"));
 		Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 		

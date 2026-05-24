@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: nidofyRootUserPWD
+      MYSQL_DATABASE: nidofy
+      MYSQL_USER: nidofy
+      MYSQL_PASSWORD: Nidofy@2026
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - nidofy-network
+
+  springboot-app:
+    build: .
+    container_name: springboot-container
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/nidofy?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: nidofy
+      SPRING_DATASOURCE_PASSWORD: Nidofy@2026
+
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
+
+      SPRING_MAIL_HOST: smtp.gmail.com
+      SPRING_MAIL_PORT: 587
+      SPRING_MAIL_USERNAME: username
+      SPRING_MAIL_PASSWORD: password
+
+      SECURITY_ADMINEMAIL: adminemail
+      SECURITY_JWT_SECRET-KEY: sha256_secretkey
+
+      UPLOADS_TARGETDIRECTORY: /uploads
+
+    ports:
+      - "8081:8081"
+    networks:
+      - nidofy-network
+    entrypoint: "java -jar app.jar"
+
+volumes:
+  mysql-data:
+
+networks:
+  app-network:
+    driver: bridge

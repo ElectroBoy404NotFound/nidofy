@@ -92,7 +92,7 @@ API reference for the backend
 #### Get specific poem by id
 
 ```http
-  GET /public/poems/getPoemById
+  GET /public/poems/getPoemById?id={id}
 ```
 
 URL Fields:
@@ -109,7 +109,7 @@ URL Fields:
 #### Get specific project by id
 
 ```http
-  GET /public/projects/getProjectById
+  GET /public/projects/getProjectById?id={id}
 ```
 
 URL Fields:
@@ -141,17 +141,6 @@ Body Fields:
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `jwtToken`      | `String`   | **Required**. JWT of the user |
-| `refreshToken`      | `String`   | **Required**. RefreshToken of the user |
-
-#### Refresh User JWT token
-
-```http
-  POST /userauth/refresh
-```
-
-Body Fields:
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
 | `refreshToken`      | `String`   | **Required**. RefreshToken of the user |
 
 #### Refresh User JWT token

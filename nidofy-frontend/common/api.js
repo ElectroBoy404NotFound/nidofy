@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8081/";
+const API_BASE_URL = "/api/";
 
 async function sendPOSTRequest(url, body, authtoken) {
     try {

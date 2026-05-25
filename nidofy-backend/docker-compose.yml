@@ -37,7 +37,7 @@ services:
       SECURITY_ADMINEMAIL: adminemail
       SECURITY_JWT_SECRET-KEY: sha256_secretkey
 
-      UPLOADS_TARGETDIRECTORY: /uploads
+      UPLOADS_TARGETDIRECTORY: /uploads/
 
     ports:
       - "8081:8081"

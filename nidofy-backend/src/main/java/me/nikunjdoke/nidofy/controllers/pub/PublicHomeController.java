@@ -42,7 +42,7 @@ public class PublicHomeController {
 			String line = p.getPoem().get(0).get(0);
 			int i = 1;
 			int j = 0;
-			while(line.length() < 60) {
+			while(line.length() < 66) {
 				line += ' ';
 				line += p.getPoem().get(j).get(i);
 				i++;

@@ -12,6 +12,7 @@ public class UpdateUserInfoDto {
     private String email;
     private String fullname;
     private PrivilegeLevel privilageLevel;
+    private boolean enabled;
 
 	public String getEmail() {
 		return email;
@@ -59,5 +60,13 @@ public class UpdateUserInfoDto {
 
 	public void setPrivilageLevel(PrivilegeLevel privilageLevel) {
 		this.privilageLevel = privilageLevel;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 }

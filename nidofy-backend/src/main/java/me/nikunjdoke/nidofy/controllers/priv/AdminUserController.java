@@ -58,9 +58,6 @@ public class AdminUserController {
 		
 		User actor = userRepo.findById(info.getUserid()).get();
 		
-		if(actor.getUsername().equals("guest"))
-			throw new InvalidActionException("You can't modify or delete a default guest user!");
-		
 		if(info.getPrivilageLevel() != null) {
 			actor.setPrivilageLevel(info.getPrivilageLevel());
 		}
@@ -80,6 +77,9 @@ public class AdminUserController {
 			if(userRepo.findByUsername(info.getUsername()) == null)
 				actor.setUsername(info.getUsername());
 			else throw new InvalidRequestException("An user with same username already exists!");
+		}
+		if(info.isEnabled()) {
+			actor.setEnabled(true);
 		}
 		
 		userRepo.save(actor);

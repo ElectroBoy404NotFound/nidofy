@@ -40,9 +40,17 @@ public class PublicHomeController {
 			curr.setCreatedAt(p.getCreatedAt());
 			
 			String line = p.getPoem().get(0).get(0);
-			if(line.length() < 60) {
+			int i = 1;
+			int j = 0;
+			while(line.length() < 60) {
 				line += ' ';
-				line += p.getPoem().get(0).get(1);
+				line += p.getPoem().get(j).get(i);
+				i++;
+				
+				if(i >= p.getPoem().get(j).size()) {
+					j++;
+					i = 0;
+				}
 			}
 			curr.setContent(line.substring(0, 65) + "...");
 			

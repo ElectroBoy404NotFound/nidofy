@@ -16,7 +16,7 @@ The frontend uses data from the backend to display data on the site...
 
 **Languages:** HTML, CSS, Javascript
 
-**Libraries/Frameworks**: Bootstrap 5, Font Awesome
+**Libraries/Frameworks**: Bootstrap 5, Font Awesome, Swiper.JS, EasyMDE, Marked
 
 ### Backend
 
@@ -30,7 +30,7 @@ Basically a database which grew roles and HTTP.
 
 Basically stuff that hold everything together from collapse.
 
-**Software:** Nginx
+**Software:** Nginx, Docker
 
 
 ## Environment Variables

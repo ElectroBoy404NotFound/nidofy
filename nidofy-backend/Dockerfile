@@ -6,7 +6,7 @@ COPY pom.xml .
 COPY src ./src
 
 RUN mvn clean package -DskipTests
-RUN MKDIR /uploads
+RUN mkdir /uploads
 
 FROM openjdk:17-jdk-slim
 

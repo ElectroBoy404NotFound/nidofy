@@ -3,14 +3,13 @@ version: '3.8'
 services:
   mysql:
     image: mysql:8.0
+    restart: unless-stopped
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: nidofyRootUserPWD
       MYSQL_DATABASE: nidofy
       MYSQL_USER: nidofy
       MYSQL_PASSWORD: Nidofy@2026
-    ports:
-      - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
     networks:
@@ -18,6 +17,7 @@ services:
 
   springboot-app:
     build: .
+    restart: unless-stopped
     container_name: springboot-container
     depends_on:
       - mysql
@@ -39,6 +39,9 @@ services:
 
       UPLOADS_TARGETDIRECTORY: /uploads/
 
+      SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE: 100MB
+      SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE: 100MB
+
     ports:
       - "8081:8081"
     networks:
@@ -51,5 +54,5 @@ volumes:
   mysql-data:
 
 networks:
-  app-network:
+  nidofy-network:
     driver: bridge

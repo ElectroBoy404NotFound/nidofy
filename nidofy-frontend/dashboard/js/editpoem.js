@@ -35,7 +35,7 @@ async function onUploadPoemSubmit(e) {
         return;
     }
 
-    window.location.href = "index.html";
+    window.location.href = "poemslist.html";
 }
 
 (async () => {
@@ -44,7 +44,7 @@ async function onUploadPoemSubmit(e) {
     const poemData = await getPoem(id);
     if("error" in poemData) {
         alert(`Failed to load poem data: ${poemData.error}`);
-        window.location.href = "index.html";
+        window.location.href = "poemslist.html";
         return;
     }
 

@@ -64,7 +64,7 @@ async function onUploadProjectSubmit(e) {
     youtube = youtube.trim() === "" ? null : youtube;
     liveDemo = liveDemo.trim() === "" ? null : liveDemo;
 
-    const result = await uploadProject(title, description, languages, timeperiod, date, thumbnail, [marked.parse(easyMDE.value())], github, youtube, liveDemo);
+    const result = await editProject(id, title, description, languages, timeperiod, date, thumbnail, [marked.parse(easyMDE.value())], github, youtube, liveDemo);
     if("error" in result) {
         alert(`Failed to upload projects: ${result.error}`);
         return;

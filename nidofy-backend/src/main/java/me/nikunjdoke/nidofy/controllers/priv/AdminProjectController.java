@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import me.nikunjdoke.nidofy.data.PrivilegeLevel;
+import me.nikunjdoke.nidofy.dtos.EditProjectDto;
 import me.nikunjdoke.nidofy.dtos.ProjectDto;
 import me.nikunjdoke.nidofy.exceptions.NotFoundException;
 import me.nikunjdoke.nidofy.exceptions.UnprivilagedExpection;
@@ -99,5 +100,29 @@ public class AdminProjectController {
 			throw new NotFoundException();
 		
 		projectsRepo.deleteById(id);
+	}
+	
+	@PostMapping("/edit")
+	public Project editProject(@RequestBody EditProjectDto reqBody) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User currentUser = (User) authentication.getPrincipal();
+		if(currentUser.getPrivilegeLevel() != PrivilegeLevel.ADMIN)
+			throw new UnprivilagedExpection("You aren't privilaged enough to do this!");
+		
+		Project project = projectsRepo.findById(reqBody.getId())
+				.orElseThrow(NotFoundException::new);
+		
+		project.setTitle(reqBody.getTitle());
+		project.setDescription(reqBody.getDescription());
+		project.setLanguages(reqBody.getLanguages());
+		project.setTimeperiod(reqBody.getTimeperiod());
+		project.setDate(reqBody.getDate());
+		project.setThumbnail(reqBody.getThumbnail());
+		project.setExplanation(reqBody.getExplanation());
+		project.setGithub(reqBody.getGithub());
+		project.setYoutube(reqBody.getYoutube());
+		project.setLiveDemo(reqBody.getLiveDemo());
+		
+		return project;
 	}
 }

@@ -1,5 +1,5 @@
-// const API_BASE_URL = "/api/";
-const API_BASE_URL = "http://localhost:8081/";
+const API_BASE_URL = "/api/";
+// const API_BASE_URL = "http://localhost:8081/";
 
 async function sendPOSTRequest(url, body, authtoken) {
     try {
@@ -151,6 +151,23 @@ async function deletePoem(id) {
 
 async function uploadProject(title, description, languages, timeperiod, date, thumbnail, explanation, github, youtube, liveDemo) {
     const data = await sendPOSTRequest(`${API_BASE_URL}admin/projects/put`, {
+        title,
+        description,
+        languages,
+        timeperiod,
+        date,
+        thumbnail,
+        explanation,
+        github,
+        youtube,
+        liveDemo
+    }, localStorage.getItem("token"));
+    return data;
+}
+
+async function editProject(id, title, description, languages, timeperiod, date, thumbnail, explanation, github, youtube, liveDemo) {
+    const data = await sendPOSTRequest(`${API_BASE_URL}admin/projects/edit`, {
+        id,
         title,
         description,
         languages,

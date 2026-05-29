@@ -3,6 +3,8 @@ package me.nikunjdoke.nidofy.dtos;
 import java.util.List;
 
 public class EditProjectDto {
+	private Long id;
+	
 	private String title;
 	private String description;
 	private String languages;
@@ -19,7 +21,7 @@ public class EditProjectDto {
 		super();
 	}
 
-	public EditProjectDto(String title, String description, String languages, String timeperiod, String date,
+	public EditProjectDto(Long id, String title, String description, String languages, String timeperiod, String date,
 			String thumbnail, List<String> explanation, String github, String youtube, String liveDemo) {
 		super();
 		this.title = title;
@@ -172,5 +174,19 @@ public class EditProjectDto {
 	 */
 	public void setLiveDemo(String liveDemo) {
 		this.liveDemo = liveDemo;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

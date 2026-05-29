@@ -123,6 +123,8 @@ public class AdminProjectController {
 		project.setYoutube(reqBody.getYoutube());
 		project.setLiveDemo(reqBody.getLiveDemo());
 		
+		projectsRepo.save(project);
+		
 		return project;
 	}
 }

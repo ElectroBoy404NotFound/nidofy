@@ -1,4 +1,5 @@
-const API_BASE_URL = "/api/";
+// const API_BASE_URL = "/api/";
+const API_BASE_URL = "http://localhost:8081/";
 
 async function sendPOSTRequest(url, body, authtoken) {
     try {
@@ -54,6 +55,23 @@ async function sendGETRequest(url, authtoken) {
     return result;
 }
 
+async function sendDELETERequest(url, authtoken) {
+    let response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${authtoken}`
+        }
+    });
+
+    let text = await response.text();
+
+    if(!text) {
+        return null;
+    }
+
+    return JSON.parse(text);
+}
+
 async function getHomeData() {
     const data = await sendGETRequest(`${API_BASE_URL}public/home/getHome`);
     return data;
@@ -100,13 +118,34 @@ async function refreshToken() {
     return data;
 }
 
-async function uploadPoem(title, signature, date, stanzas) {
+async function uploadPoem(title, signature, date, stanzas, signatureLength) {
     const data = await sendPOSTRequest(`${API_BASE_URL}admin/poems/put`, {
         "title": title,
         "signature": signature,
         "date": date,
-        "poem": stanzas
+        "poem": stanzas,
+        "signatureLength": signatureLength
     }, localStorage.getItem("token"));
+    return data;
+}
+
+async function editPoem(id, title, signature, date, stanzas, signatureLength) {
+    const data = await sendPOSTRequest(`${API_BASE_URL}admin/poems/edit`, {
+        "id": Number(id),
+        "title": title,
+        "signature": signature,
+        "date": date,
+        "poem": stanzas,
+        "signatureLength": signatureLength
+    }, localStorage.getItem("token"));
+    return data;
+}
+
+async function deletePoem(id) {
+    const data = await sendDELETERequest(`${API_BASE_URL}admin/poems/delete/${id}`, localStorage.getItem("token"));
+    if(data === null) {
+        return {};
+    }
     return data;
 }
 
@@ -123,5 +162,53 @@ async function uploadProject(title, description, languages, timeperiod, date, th
         youtube,
         liveDemo
     }, localStorage.getItem("token"));
+    return data;
+}
+
+async function deleteProject(id) {
+    const data = await sendDELETERequest(`${API_BASE_URL}admin/projects/delete/${id}`, localStorage.getItem("token"));
+    if(data === null) {
+        return {};
+    }
+    return data;
+}
+
+async function getListOfUsers() {
+    const data = await sendGETRequest(`${API_BASE_URL}admin/users/list`, localStorage.getItem("token"));
+    return data;
+}
+
+async function signUp(fullname, username, email, password) {
+    const data = await sendPOSTRequest(`${API_BASE_URL}userauth/signup`, {
+        fullname,
+        username,
+        email,
+        password
+    });
+    return data;
+}
+
+async function getUser(id) {
+    const data = await sendGETRequest(`${API_BASE_URL}info/users/getById/${id}`, localStorage.getItem("token"));
+    return data;
+}
+
+async function editUser(id, fullname, username, email, enabled, privilegeLevel) {
+    const data = await sendPOSTRequest(`${API_BASE_URL}admin/users/update`, {
+        "userid": id,
+        "fullname": fullname,
+        "username": username,
+        "email": email,
+        "enabled": enabled,
+        "privilegeLevel": privilegeLevel
+    }, localStorage.getItem("token"));
+    return data;
+}
+
+async function deleteUser(id) {
+    const data = await sendDELETERequest(`${API_BASE_URL}admin/users/delete/${id}`, localStorage.getItem("token"));
+    if(data === null) {
+        return {};
+    }
     return data;
 }

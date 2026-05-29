@@ -85,8 +85,8 @@ setTimeout(async () => {
 (async function () {
     const dataResponse = await getHomeData();
 
-    const poems = sortById(dataResponse.poetry);
-    const projects = sortById(dataResponse.projects);
+    const poems = sortByDateAndId(dataResponse.poetry);
+    const projects = sortByDateAndId(dataResponse.projects);
 
     document.getElementById("noofpoems").innerText = dataResponse.numberOfPoems;
     document.getElementById("noofprojects").innerText = dataResponse.numberOfProject;
@@ -104,7 +104,7 @@ setTimeout(async () => {
                         ${poem.content}
                         <br>
                         <div class="text-end">
-                            --- ${poem.signature}
+                            ~ ${poem.signature}
                         </div>
                     </div>
 

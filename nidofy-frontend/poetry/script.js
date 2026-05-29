@@ -46,7 +46,7 @@ window.addEventListener("DOMContentLoaded", async function () {
         return;
     }
 
-    poemsList = sortById(poemsList);
+    poemsList = sortByDateAndId(poemsList);
 
     document.getElementById("gallery").innerHTML = `
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
@@ -63,7 +63,7 @@ window.addEventListener("DOMContentLoaded", async function () {
                             ${poem.content}
                             <br>
                             <div class="text-end">
-                                --- ${poem.signature}
+                                ~ ${poem.signature}
                             </div>
                         </div>
 

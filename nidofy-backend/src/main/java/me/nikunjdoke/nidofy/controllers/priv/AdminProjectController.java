@@ -8,6 +8,8 @@ import java.nio.file.StandardCopyOption;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import me.nikunjdoke.nidofy.data.PrivilegeLevel;
 import me.nikunjdoke.nidofy.dtos.ProjectDto;
+import me.nikunjdoke.nidofy.exceptions.NotFoundException;
 import me.nikunjdoke.nidofy.exceptions.UnprivilagedExpection;
 import me.nikunjdoke.nidofy.models.Project;
 import me.nikunjdoke.nidofy.models.User;
@@ -83,5 +86,18 @@ public class AdminProjectController {
 		Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 		
 		return "/uploads/" + filename;
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public void deleteProject(@PathVariable long id) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User currentUser = (User) authentication.getPrincipal();
+		if(currentUser.getPrivilegeLevel() != PrivilegeLevel.ADMIN)
+			throw new UnprivilagedExpection("You aren't privilaged enough to do this!");
+		
+		if(!projectsRepo.existsById(id))
+			throw new NotFoundException();
+		
+		projectsRepo.deleteById(id);
 	}
 }

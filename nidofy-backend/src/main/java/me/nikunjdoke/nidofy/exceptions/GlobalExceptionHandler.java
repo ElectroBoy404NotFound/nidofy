@@ -254,4 +254,15 @@ public class GlobalExceptionHandler {
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
     }
+    
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<ErrorResponse> NotFoundException(Exception ex) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                ErrorCode.NOT_FOUND,
+                ex.getMessage(),
+                getCurrentTimestamp()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
 }

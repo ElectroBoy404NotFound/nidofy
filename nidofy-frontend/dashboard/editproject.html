@@ -44,12 +44,18 @@
                         <h1 class="mt-4">Upload Project</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Upload Project</li>
+                            <li class="breadcrumb-item active">Modify Projects</li>
+                            <li class="breadcrumb-item active">Edit Project</li>
                         </ol>
                         <div class="row">
-                            <div class="card mb-4 col-md-6">
+                            <div class="card mb-4 col-md-5">
                                 <div class="card-body">
                                     <form onsubmit="onUploadProjectSubmit(event)" id="uploadpoemform">
+                                        <div class="mb-3">
+                                            <label for="poemid" class="form-label">Project ID</label>
+                                            <input type="text" class="form-control" id="poemid" readonly>
+                                        </div>
+                                        
                                         <div class="mb-3">
                                             <label for="title" class="form-label">Title</label>
                                             <input type="text" class="form-control" id="title" required>
@@ -91,11 +97,11 @@
                                             <label for="demo" class="form-label">Live Demo</label>
                                             <input type="text" class="form-control" id="demo">
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Upload Project</button>
+                                        <button type="submit" class="btn btn-primary">Update Project</button>
                                     </form>
                                 </div>
                             </div>
-
+                            <div class="col-md-1"></div>
                             <div class="card mb-4 col-md-6">
                                 <div class="card-body" id="preview">
                                 </div>
@@ -115,8 +121,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
         <script src="../common/api.js"></script>
         <script src="js/dashboards.js"></script>
-        <script src="js/uploadproject.js"></script>
+        <script src="js/editproject.js"></script>
     </body>
 </html>

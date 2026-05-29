@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import me.nikunjdoke.nidofy.data.PrivilegeLevel;
 import me.nikunjdoke.nidofy.dtos.UpdateUserInfoDto;
-import me.nikunjdoke.nidofy.exceptions.InvalidActionException;
 import me.nikunjdoke.nidofy.exceptions.InvalidRequestException;
 import me.nikunjdoke.nidofy.exceptions.UnprivilagedExpection;
 import me.nikunjdoke.nidofy.exceptions.UserNotFoundException;
@@ -58,8 +57,8 @@ public class AdminUserController {
 		
 		User actor = userRepo.findById(info.getUserid()).get();
 		
-		if(info.getPrivilageLevel() != null) {
-			actor.setPrivilageLevel(info.getPrivilageLevel());
+		if(info.getPrivilegeLevel() != null) {
+			actor.setPrivilageLevel(info.getPrivilegeLevel());
 		}
 		if(info.getEmail() != null && !info.getEmail().equals(actor.getEmail())) {
 //			actor.setEmail(info.getEmail());
@@ -88,7 +87,7 @@ public class AdminUserController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable long id, @RequestBody String reason) {
+	public ResponseEntity<User> deleteUser(@PathVariable long id) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User currentUser = (User) authentication.getPrincipal();
 		if(currentUser.getPrivilegeLevel() != PrivilegeLevel.ADMIN)
@@ -98,9 +97,6 @@ public class AdminUserController {
 			throw new UserNotFoundException("No user with id %d exists!".formatted(id));
 		
 		User actor = userRepo.findById(id).get();
-		
-		if(actor.getUsername().equals("guest"))
-			throw new InvalidActionException("You can't modify or delete a default guest user!");
 		
 		if(currentUser.getId() == actor.getId())
 			throw new InvalidRequestException("You can't delete yourself!");

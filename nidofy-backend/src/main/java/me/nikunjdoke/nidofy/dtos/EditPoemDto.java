@@ -2,14 +2,15 @@ package me.nikunjdoke.nidofy.dtos;
 
 import java.util.List;
 
-public class PoemDto {
+public class EditPoemDto {
+	private long id;
 	private String title;
     private List<List<String>> poem;
     private String date;
     private String signature;
     private int signatureLength;
     
-	public PoemDto(String title, List<List<String>> poem, String date, String signature, int signatureLength) {
+	public EditPoemDto(long id, String title, List<List<String>> poem, String date, String signature, int signatureLength) {
 		super();
 		
 		this.title = title;
@@ -19,7 +20,7 @@ public class PoemDto {
 		this.setSignatureLength(signatureLength);
 	}
 	
-	public PoemDto() {
+	public EditPoemDto() {
 		super();
 	}
 	
@@ -70,6 +71,14 @@ public class PoemDto {
 	 */
 	public void setSignature(String signature) {
 		this.signature = signature;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	/**

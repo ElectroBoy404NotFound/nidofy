@@ -9,6 +9,10 @@ public class LogoutDto {
 		this.jwtToken = jwtToken;
 	}
 	
+	public LogoutDto() {
+		super();
+	}
+	
 	/**
 	 * @return the refreshToken
 	 */

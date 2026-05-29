@@ -11,7 +11,7 @@ public class UpdateUserInfoDto {
     private String password;
     private String email;
     private String fullname;
-    private PrivilegeLevel privilageLevel;
+    private PrivilegeLevel privilegeLevel;
     private boolean enabled;
 
 	public String getEmail() {
@@ -54,12 +54,12 @@ public class UpdateUserInfoDto {
 		this.userid = userid;
 	}
 
-	public PrivilegeLevel getPrivilageLevel() {
-		return privilageLevel;
+	public PrivilegeLevel getPrivilegeLevel() {
+		return privilegeLevel;
 	}
 
-	public void setPrivilageLevel(PrivilegeLevel privilageLevel) {
-		this.privilageLevel = privilageLevel;
+	public void setPrivilegeLevel(PrivilegeLevel privilageLevel) {
+		this.privilegeLevel = privilageLevel;
 	}
 
 	public boolean isEnabled() {

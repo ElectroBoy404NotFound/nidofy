@@ -13,23 +13,19 @@ function parsePoem(text) {
 
 async function onUploadPoemSubmit(e) {
     e.preventDefault();
+    document.getElementById("uploadbtn").disabled = true;
 
     const title = document.getElementById("poemtitle").value;
     const signature = document.getElementById("poemsignature").value;
     const content = document.getElementById("poemcontent").value;
     const date = document.getElementById("poemdate").value;
     const parsedContent = parsePoem(content);
+    const signatureLength = document.getElementById("poemsignaturelength").value;
 
-    console.log({
-        title,
-        signature,
-        date,
-        parsedContent
-    });
-
-    const result = await uploadPoem(title, signature, date, parsedContent);
+    const result = await uploadPoem(title, signature, date, parsedContent, signatureLength);
     if("error" in result) {
         alert(`Failed to upload poem: ${result.error}`);
+        document.getElementById("uploadbtn").disabled = false;
         return;
     }
 

@@ -30,18 +30,21 @@ public class Poem {
 	private String date;
 	@Column
 	private String signature;
-    
+	@Column()
+	private Integer signatureLength;
+	
 	@CreationTimestamp
     @Column(updatable = false, name = "created_at")
     private Date createdAt;
 	
-	public Poem(String title, List<List<String>> poem, String date, String signature) {
+	public Poem(String title, List<List<String>> poem, String date, String signature, Integer signatureLength) {
 		super();
 		
 		this.title = title;
 		this.poem = poem;
 		this.date = date;
 		this.signature = signature;
+		this.signatureLength = signatureLength;
 	}
 	
 	public Poem() {
@@ -120,5 +123,19 @@ public class Poem {
 	 */
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	/**
+	 * @return the signatureLength
+	 */
+	public Integer getSignatureLength() {
+		return signatureLength;
+	}
+
+	/**
+	 * @param signatureLength the signatureLength to set
+	 */
+	public void setSignatureLength(Integer signatureLength) {
+		this.signatureLength = signatureLength;
 	}
 }
